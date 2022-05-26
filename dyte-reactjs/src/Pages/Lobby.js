@@ -30,9 +30,8 @@ function Lobby() {
 
     const meetingURL = '/meeting/' + roomName + '/' + meetingId;
     window.history.pushState('', 'meeting', meetingURL);
-    return (<div>
-        <h1>Lobby Screen for: roomName</h1>     
-        <DyteMeeting meeting={client}/>
+    return (<div>   
+        <DyteMeeting meeting={client} class="Dyte" />
         </div>);
 }
 

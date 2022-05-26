@@ -1,70 +1,50 @@
-# Getting Started with Create React App
+# Integrate Dyte SDK in React JS  
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Introduction
 
-## Available Scripts
+In this guide, we will integrate Dyte SDK into React JS application which we will build from scratch.
 
-In the project directory, you can run:
+The UI of the application looks something like as shown below. And you can find source code of this app here.
 
-### `npm start`
+![Image to display application UI](https://dyte-assets.s3.ap-south-1.amazonaws.com/guides/dyte-integrate-reactjs/integrate-dyte-reactjs.gif)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Pre-requisite
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+To build and run this application, make sure you have NodeJS and React development tools installed.
+If you are new to React JS, find information [here](https://reactjs.org/docs/getting-started.html).
 
-### `npm test`
+Note: If you've downloaded the source code, replace or add values to .env file from Dyte Developer Portal
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Step 01: Create React application
 
-### `npm run build`
+Use `npx create-react-app dyte-reactjs` on Terminal to create an app called `dyte-reactjs`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+This will create a folder on your machine with same name `dyte-reactjs`. Open this folder in your favorite editor. 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Step 02: Install required packages
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+We will use following NPM packages in this project. Install those using `npm-install` command as shown.
 
-### `npm run eject`
+- Axios : `npm install axios`
+- React Router Dom : `npm install react-router-dom`
+- Dyte SDK (React Web Core and React UI Kit): `npm install @dytesdk/react-ui-kit @dytesdk/react-web-core`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Step 03: Project structure
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Once you create the React app, the project structure will look something like this:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+![Project structure UI](https://dyte-assets.s3.ap-south-1.amazonaws.com/guides/dyte-integrate-reactjs/integrate-dyte-reactjs-project-structure.png)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Index.JS : To setup initial application and launch.
+- App.JS : To setup application routes.
+- Pages\Welcome.JS : Ask user for meeting tile and create meeting.
+- Pages\Meeting.JS : Ask user to join as 'Host' or 'Participant'
+- Pages\Lobby.JS : Launch meeting screen with user joined. Allow user to manage the meeting.
 
-## Learn More
+## Step 04: Create meeting
+## Step 05: Add participants
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Step 06: Join meeting in the Lobby
+## Step 07: Invite attendees
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Step 08: Launch & debug application

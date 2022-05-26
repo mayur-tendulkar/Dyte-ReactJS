@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { useState } from 'react';
-
+import '../App.css';
 function Meeting() {
 
     const navigate = useNavigate();
@@ -59,7 +59,7 @@ function Meeting() {
     navigate('/lobby', { state: { meetingId: meetingId, roomName: roomName, authToken: authToken, orgID: orgID } });
 }
 
-    return (<div>
+    return (<div class="App">
         <h1>Welcome to Meeting Room: {roomName}</h1>
         <button id='joinHostButton' onClick={joinHostHandler}>Join as Host</button>
         <button id='joinParticipantButton' onClick={joinParticipantHandler}>Join as Participant</button>

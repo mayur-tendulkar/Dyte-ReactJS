@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
 }
 
 .App-logo {
@@ -35,4 +36,25 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+button {
+  padding: 10px;
+  margin: 5px;
+  width: 200px;
+}
+
+input
+{
+  padding: 10px;
+  margin: 5px;
+  
+}
+
+img{
+  padding: 50px;
+
+}
+.Dyte {
+ height: 300px;
 }

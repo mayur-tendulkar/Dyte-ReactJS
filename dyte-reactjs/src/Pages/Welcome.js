@@ -1,16 +1,13 @@
+import '../App.css';
 import axios from "axios";
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react';
 import React from 'react'
+import Logo from '../dyte.svg'
 // Welcome Component
 // This component is used to welcome the user and allow them to create meeting
 function Welcome(){
 
-
-    // Fetch values from .env file and store in Context for reuse.
-    const dyte_apiKey = React.createContext(process.env.REACT_APP_DYTE_API_KEY);
-    const dyte_orgId = React.createContext(process.env.REACT_APP_DYTE_ORG_ID);
-    const dyte_baseUrl = React.createContext(process.env.REACT_APP_DYTE_API_BASE_URL);
 
     // React Hook useNavigate() to allow navigation
     const navigate = useNavigate(); 
@@ -37,10 +34,11 @@ function Welcome(){
     }
 
     return (
-        <div>
+        <div class="App">
+            <img src={Logo}/>
             <h1>: Welcome to Dyte :</h1>
-            <input id='meetingTitleInput' onChange={setTitleHandler}/>
-            <button id='createMeetingButton' onClick={createMeetingHandler}>Create Meeting</button>
+            <input  id='meetingTitleInput' onChange={setTitleHandler} placeholder="Enter Meeting Title"/>
+            <button id='createMeetingButton'  onClick={createMeetingHandler}>Create Meeting</button>
         </div>
     )
 
