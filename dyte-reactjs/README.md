@@ -111,7 +111,7 @@ This component returns HTML to allow user to enter meeting title and create meet
 </div>
 ```
 
-Creating a meeting is a simple HTTP call to Dyte backend APIs. However, to call these APIs, you'll need to pass details which include `Organization ID`, `API Key` and `Base URL`. You can find the se details on Dyte Developer Portal. Copy these details and save it in `.env` file.
+Creating a meeting is a simple HTTP call to Dyte backend API [Create Meeting](https://docs.dyte.io/api/#/operations/createMeeting). However, to call these APIs, you'll need to pass details which include `Organization ID`, `API Key` and `Base URL`. You can find the se details on Dyte Developer Portal. Copy these details and save it in `.env` file.
 
 In `createMeetingHandler` let's read these values from `.env` file and use it to make a HTTP call.
 
@@ -140,6 +140,33 @@ const createMeetingHandler = async e => {
 
 <img src="https://dyte-assets.s3.ap-south-1.amazonaws.com/guides/dyte-integrate-reactjs/integrate-dyte-reactjs-meeting.png" alt="Meeting created, add participant UI" title="Meeting created, add participant UI" width="800" />
 
+Once the meeting is created, you can add participants in this meeting. Participants can have different roles or presets which you can define already. By default, 'host' or 'participant' roles are available. 
+Adding a participant is nothing but calling a REST API [Add Participant](https://docs.dyte.io/api/#/operations/addParticipant).
+
+Create a React component called `Meeting` in `Meeting.js` file and use following code.
+
+```javascript
+ const joinURL = `${baseURL}/v1/organizations/${orgID}/meetings/${meetingId}/participant`; 
+
+    const joinParticipantHandler = async e => { 
+        var participantResponse = await axios.post(joinURL, {
+            // Use random ID for user to add in this meeting
+            clientSpecificId: Math.random().toString(36).substring(7),
+            userDetails: {
+            // Provide details like name, profile URL
+                "name": "Participant" + Math.random().toString(36).substring(2) }, }, {
+            headers: {
+                'Authorization': `APIKEY ${apiKEY}`
+            }
+        });
+        
+        const authResponse = participantResponse.data.data.authResponse;
+        authToken = authResponse.authToken;
+
+        navigate('/lobby', { state: { meetingId: meetingId, roomName: roomName, authToken: authToken, orgID: orgID } });
+    }
+```
+
 ## Step 06: Join meeting in the Lobby
 
 <img src="https://dyte-assets.s3.ap-south-1.amazonaws.com/guides/dyte-integrate-reactjs/integrate-dyte-reactjs-lobby.png" alt="Meeting lobby UI" title="Meeting lobby UI" width="800" />
@@ -147,4 +174,5 @@ const createMeetingHandler = async e => {
 ## Step 07: Invite attendees
 
 <img src="https://dyte-assets.s3.ap-south-1.amazonaws.com/guides/dyte-integrate-reactjs/integrate-dyte-reactjs-stage.png" alt="Meeting room UI" title="Meeting room UI" width="800" />
+
 ## Step 08: Launch & debug application
