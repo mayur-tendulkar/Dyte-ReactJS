@@ -18,6 +18,7 @@ The UI of the application looks something like as shown below. And you can find 
 
 <img src="https://dyte-assets.s3.ap-south-1.amazonaws.com/guides/dyte-integrate-reactjs/integrate-dyte-reactjs.gif" alt="Image to display application UI" title="Image to display application UI" width="800"/>
 
+
 ## Pre-requisite
 
 To build and run this application, make sure you have Node.js and React development tools installed.
@@ -166,13 +167,47 @@ Create a React component called `Meeting` in `Meeting.js` file and use following
         navigate('/lobby', { state: { meetingId: meetingId, roomName: roomName, authToken: authToken, orgID: orgID } });
     }
 ```
+In above code, on success (HTTP 200), we will navigate the user to lobby, where user can select preferred video and audio devices and join the meeting. 
 
 ## Step 06: Join meeting in the Lobby
 
 <img src="https://dyte-assets.s3.ap-south-1.amazonaws.com/guides/dyte-integrate-reactjs/integrate-dyte-reactjs-lobby.png" alt="Meeting lobby UI" title="Meeting lobby UI" width="800" />
 
+On this screen, we render `DyteClient` which represents a lobby (where users can wait, select preferred video & audio devices) and join the meeting room (actual meeting stage). 
+
+Create a React components called `Lobby` in `Lobby.JS` file and use following code.
+
+```javascript
+const[client, initClient] = useDyteClient();
+    useEffect(() => {
+        initClient({
+            authToken: authToken,
+            roomName: roomName,
+            defaults: {
+              audio: true,
+              video: true,
+            },
+          });
+    },[]) 
+```
+
+In above code we initialize `DyteClient`. To actually render it, we `return` it in HTML code.
+
+```javascript
+return (<div>   
+    <DyteMeeting meeting={client} class="Dyte" />
+</div>);
+```
+
 ## Step 07: Invite attendees
 
 <img src="https://dyte-assets.s3.ap-south-1.amazonaws.com/guides/dyte-integrate-reactjs/integrate-dyte-reactjs-stage.png" alt="Meeting room UI" title="Meeting room UI" width="800" />
+
+In the same `Lobby.JS` file, let's write code to set browser URL to something which can be shared as invite and people can join the same meeting.
+
+```javascript
+const meetingURL = '/meeting/' + roomName + '/' + meetingId;
+window.history.pushState('', 'meeting', meetingURL);
+```
 
 ## Step 08: Launch & debug application
