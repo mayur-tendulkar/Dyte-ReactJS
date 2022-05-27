@@ -3,6 +3,7 @@ import {Routes, Route} from 'react-router-dom'
 import Welcome from './Pages/Welcome';
 import Meeting from './Pages/Meeting';
 import Lobby from './Pages/Lobby';
+import Logo from '../dyte.svg'
 function App() {
   return (
   <Routes>
