@@ -1,7 +1,5 @@
 # Integrate Dyte SDK in React JS  
 
-## Introduction
-
 Dyte has various SDKs available depending on the platforms. For example:
 
 - Core SDK - Low-level yet easy to use Video SDK.
@@ -10,7 +8,7 @@ Dyte has various SDKs available depending on the platforms. For example:
 - Angular UI Kit - Angular components to build real-time communication user interfaces.
 - Web Components UI Kit - Web Components based framework independent kit to build real-time communication user interfaces.
 
-You can read more about this SDK on the [blog](https://blog.dyte.io/launching-new-dyte-web-sdk/) or [documentation]().
+You can read more about this SDK on the [blog](https://blog.dyte.io/launching-new-dyte-web-sdk/) or [documentation](http://docs.dyte.io).
 
 In this guide, we will integrate **React Core** and **React UIKit** SDK into **ReactJS** application which we will build from scratch.
 
@@ -211,3 +209,7 @@ window.history.pushState('', 'meeting', meetingURL);
 ```
 
 ## Step 08: Launch & debug application
+
+React applications can be launched by command `npm start`. If everything is right and you have no compile errors, you should see the same output as shown below. You should be able to create a meeting, add participant and see the meeting room.
+
+<img src="https://dyte-assets.s3.ap-south-1.amazonaws.com/guides/dyte-integrate-reactjs/integrate-dyte-reactjs.gif" alt="Image to display application UI" title="Image to display application UI" width="800"/>
