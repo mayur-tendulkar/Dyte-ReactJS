@@ -1,28 +1,39 @@
 # Integrate Dyte SDK in React JS  
 
 ## Introduction
-In this guide, we will integrate Dyte SDK into React JS application which we will build from scratch. 
 
-The UI of the application looks something like as shown below. And you can find source code of this app here. 
+Dyte has various SDKs available depending on the platforms. For example:
+
+- Core SDK - Low-level yet easy to use Video SDK.
+- React Core SDK - React Hooks based low-level yet easy to use Video SDK.
+- React UI Kit - React components to build real-time communication user interfaces.
+- Angular UI Kit - Angular components to build real-time communication user interfaces.
+- Web Components UI Kit - Web Components based framework independent kit to build real-time communication user interfaces.
+
+You can read more about this SDK on the [blog](https://blog.dyte.io/launching-new-dyte-web-sdk/) or [documentation]().
+
+In this guide, we will integrate **React Core** and **React UIKit** SDK into **ReactJS** application which we will build from scratch.
+
+The UI of the application looks something like as shown below. And you can find source code of this app [here]().
 
 <img src="https://dyte-assets.s3.ap-south-1.amazonaws.com/guides/dyte-integrate-reactjs/integrate-dyte-reactjs.gif" alt="Image to display application UI" title="Image to display application UI" width="800"/>
 
-## Pre-requisite:
+## Pre-requisite
 
-To build and run this application, make sure you have NodeJS and React development tools installed. 
-If you are new to React JS, find information [here](https://reactjs.org/docs/getting-started.html).
+To build and run this application, make sure you have Node.js and React development tools installed.
+If you are new to ReactJS, find information [here](https://reactjs.org/docs/getting-started.html).
 
-Note: If you've downloaded the source code, replace or add values to .env file from Dyte Developer Portal
+Note: If you've downloaded the source code, replace or add values to `.env` file from [Dyte Developer Portal](https://dev.dyte.io/apikeys). To get an overiew of Dyte Developer Portal, watch this [YouTube Video](https://www.youtube.com/watch?v=uiHJTYXQCrI)
 
 ## Step 01: Create React application
 
 Use `npx create-react-app dyte-reactjs` on Terminal to create an app called `dyte-reactjs`
 
-This will create a folder on your machine with same name `dyte-reactjs`. Open this folder in your favorite editor. 
+This will create a folder on your machine with the same name i.e. `dyte-reactjs`. Open this folder in your favorite editor. We will use Visual Studio Code in this guide.
 
 ## Step 02: Install required packages
 
-We will use following NPM packages in this project. Install those using `npm-install` command as shown.
+To build this project, we will need to install few dependencies. Install those using `npm-install` command as shown.
 
 - Axios : `npm install axios`
 - React Router Dom : `npm install react-router-dom`
@@ -40,8 +51,8 @@ Once you create the React app, the project structure will look something like th
 - Pages\Meeting.JS : Ask user to join as 'Host' or 'Participant'
 - Pages\Lobby.JS : Launch meeting screen with user joined. Allow user to manage the meeting.
 
-On each JavaScript page, import packages and components as required. 
-For example, below code sample is from `App.js` which needs all components for routing purpose.
+On each JavaScript page, import packages and components as required.
+For example, below code sample is from `App.JS` which needs all components for routing purpose. Refer each file for its `imports`.
 
 ```javascript
 import './App.css';
@@ -51,7 +62,8 @@ import Meeting from './Pages/Meeting';
 import Lobby from './Pages/Lobby';
 import Logo from '../dyte.svg'
 ```
-Let's setup routing for this app using React Router.
+
+Once, we imported all components, let's setup routing for this app using React Router in `App.js` file.
 
 ```javascript
 <Routes>
@@ -62,7 +74,9 @@ Let's setup routing for this app using React Router.
 </Routes>
 ```
 
-## Step 04: Create meeting 
+## Step 04: Create meeting
+
+<img src="https://dyte-assets.s3.ap-south-1.amazonaws.com/guides/dyte-integrate-reactjs/integrate-dyte-reactjs-welcome.png" alt="Welcome UI" title="Welcome UI" width="800" />
 
 We use `Welcome.JS` file to create a React component called `Welcome` which allows users to create a Meeting.
 
@@ -71,17 +85,6 @@ function Welcome(){
 
 }
 export default Welcome
-```
-
-This component returns HTML to allow user to enter meeting title and create meeting by clicking on a button.
-
-```javascript
-<div class="App">
-    <img src={Logo}/>
-    <h1>: Welcome to Dyte :</h1>
-    <input  id='meetingTitleInput' onChange={setTitleHandler} placeholder="Enter Meeting Title"/>
-    <button id='createMeetingButton'  onClick={createMeetingHandler}>Create Meeting</button>
-</div>
 ```
 
 To manage navivation, state etc, let's use React Hooks `useNavivate()` and `useState()`.  
@@ -97,11 +100,23 @@ const setTitleHandler = (e) => {
 }
 ```
 
-Now, creating a meeting is a simple HTTP call to Dyte backend APIs. However, to call these APIs, you'll need to pass details which include Organization ID, API Key and Base URL. You can find these details on Dyte Developer Portal. Copy these details and save it in `.env` file.
+This component returns HTML to allow user to enter meeting title and create meeting by clicking on a button. We will render this HTML in `return` block.
 
-In `createMeetingHandler` let's read these values from `.env` file and use it to make a HTTP call. 
+```javascript
+<div class="App">
+    <img src={Logo}/>
+    <h1>: Welcome to Dyte :</h1>
+    <input  id='meetingTitleInput' onChange={setTitleHandler} placeholder="Enter Meeting Title"/>
+    <button id='createMeetingButton'  onClick={createMeetingHandler}>Create Meeting</button>
+</div>
+```
 
-On success (HTTP 200), we will use details from response and store in variables `meetingId` and `roomName` 
+Creating a meeting is a simple HTTP call to Dyte backend APIs. However, to call these APIs, you'll need to pass details which include `Organization ID`, `API Key` and `Base URL`. You can find the se details on Dyte Developer Portal. Copy these details and save it in `.env` file.
+
+In `createMeetingHandler` let's read these values from `.env` file and use it to make a HTTP call.
+
+On success (HTTP 200), we will use details from response and store in variables `meetingId` and `roomName`.
+Also, after meeting is created, let's navigate the user to `Meeting' component.
 
 ```javascript
 const createMeetingHandler = async e => {
@@ -121,15 +136,15 @@ const createMeetingHandler = async e => {
 }
 ```
 
-
 ## Step 05: Add participants
 
+<img src="https://dyte-assets.s3.ap-south-1.amazonaws.com/guides/dyte-integrate-reactjs/integrate-dyte-reactjs-meeting.png" alt="Meeting created, add participant UI" title="Meeting created, add participant UI" width="800" />
 
 ## Step 06: Join meeting in the Lobby
 
+<img src="https://dyte-assets.s3.ap-south-1.amazonaws.com/guides/dyte-integrate-reactjs/integrate-dyte-reactjs-lobby.png" alt="Meeting lobby UI" title="Meeting lobby UI" width="800" />
+
 ## Step 07: Invite attendees
 
+<img src="https://dyte-assets.s3.ap-south-1.amazonaws.com/guides/dyte-integrate-reactjs/integrate-dyte-reactjs-stage.png" alt="Meeting room UI" title="Meeting room UI" width="800" />
 ## Step 08: Launch & debug application
-
-
-
